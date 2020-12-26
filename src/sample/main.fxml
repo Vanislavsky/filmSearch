@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="995.0" style="-fx-background-color: #181818#181818 #181818#181818;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainController">
+   <children>
+      <TextField fx:id="searchField" layoutX="224.0" layoutY="146.0" prefHeight="39.0" prefWidth="498.0" style="-fx-background-color: #4f4f4f#4f4f4f; -fx-border-color: #2c2c2e#2c2c2e;" />
+      <Button fx:id="searchButton" layoutX="430.0" layoutY="210.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: #4f4f4f#4f4f4f; -fx-text-fill: #fefefe#fefefe #fefefe#fefefe;" text="поиск" />
+      <ListView fx:id="filmList" layoutX="222.0" layoutY="271.0" prefHeight="323.0" prefWidth="507.0" style="-fx-background-color: #181818#181818 #181818#181818 #181818#181818 #181818#181818;" />
+   </children>
+</AnchorPane>
