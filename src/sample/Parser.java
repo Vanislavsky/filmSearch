@@ -67,10 +67,28 @@ public class Parser {
         var resultById = Parser.makeAPICall("https://kinopoiskapiunofficial.tech/api/v2.1/films/" + id, paramsById, headerParamsById);
         Object objById = new JSONParser().parse(resultById); // Object obj = new JSONParser().parse(new FileReader("JSONExample.json"));
         JSONObject joById = (JSONObject) objById;
-        System.out.println(joById);
 
         JSONObject film = (JSONObject)joById.get("data");
         return film;
+    }
+
+    public static String ParseTrailer(String id) throws IOException, URISyntaxException, org.json.simple.parser.ParseException {
+        var paramsById = new ArrayList<NameValuePair>();
+        var headerParamsById = new ArrayList<NameValuePair>();
+        headerParamsById.add(new BasicNameValuePair("accept", "application/json"));
+        headerParamsById.add(new BasicNameValuePair("X-API-KEY", "f1d94351-2911-4485-b037-97817098724e"));
+        var resultById = Parser.makeAPICall("https://kinopoiskapiunofficial.tech/api/v2.1/films/" + id +"/videos", paramsById, headerParamsById);
+        Object objById = new JSONParser().parse(resultById); // Object obj = new JSONParser().parse(new FileReader("JSONExample.json"));
+        JSONObject joById = (JSONObject) objById;
+        System.out.println(joById);
+        JSONArray trailers = (JSONArray) joById.get("trailers");
+
+        String trailer;
+        if (trailers.size() != 0)
+            trailer = (String) ((JSONObject)trailers.get(1)).get("url");
+        else
+            trailer = null;
+        return trailer;
     }
 
 

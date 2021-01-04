@@ -11,6 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,6 +30,9 @@ public class Controller {
 
     @FXML
     private ImageView filmView;
+
+    @FXML
+    private WebView trailer;
 
     @FXML
     private Label filmName;
@@ -79,6 +86,8 @@ public class Controller {
     void initialize() throws IOException, URISyntaxException, org.json.simple.parser.ParseException {
         JSONObject Data = (JSONObject)((JSONArray) Parser.ParseByKeyWord(keyWord).get("films")).get(0);
         JSONObject film = Parser.ParseById(((Long)Data.get("filmId")).toString());
+        String trailerUrl = Parser.ParseTrailer(((Long)Data.get("filmId")).toString());
+
 
         filmName.setText((String) film.get("nameRu"));
         enName.setText((String) film.get("nameEn"));
@@ -110,12 +119,18 @@ public class Controller {
         connection.connect();
         filmView.setImage(new Image(connection.getInputStream()));
 
+        if(trailerUrl != null) {
+            String changedTrailerUri = trailerUrl.substring(32, trailerUrl.length());
+            String embancedUri = "https://www.youtube.com/embed/" + changedTrailerUri;
+            trailer.getEngine().load(embancedUri);
+        }
+
         description.setEditable(false);
         description.setWrapText(true);
-        description.setStyle("-fx-text-fill:  black; -fx-font-size: 16px ");
+        description.setStyle("-fx-text-fill: #fefefe#fefefe; -fx-font-size: 16px; -fx-control-inner-background: #181818#181818 ");
         description.setText((String)film.get("description"));
 
-        factsList.setStyle("-fx-text-fill:  black; -fx-font-size: 16px ");
+        factsList.setStyle("-fx-text-fill: #fefefe#fefefe; -fx-font-size: 16px; -fx-control-inner-background: #181818#181818 ");
         for(Object fact : (JSONArray)film.get("facts")) {
             factsList.getItems().addAll((String) fact);
         }

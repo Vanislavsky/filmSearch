@@ -45,7 +45,8 @@ public class mainController {
 
     @FXML
     void initialize() {
-        searchField.setStyle("-fx-text-fill:  #fefefe#fefefe; -fx-background-color:  #4f4f4f#4f4f4f");
+        searchField.setStyle("-fx-text-fill:  #fefefe#fefefe; -fx-background-color:  #4f4f4f");
+        filmList.setStyle("-fx-text-fill:  #fefefe; -fx-control-inner-background: #181818; -fx-background-color: #181818");
 
         searchButton.setOnAction(actionEvent ->  {
                 JSONObject jo = null;
